@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adriele Terapia Capilar - Dashboard">
+    <title>Adriele Terapia Capilar | Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="header-brand">
+                    <img src="images/logo.png" alt="Adriele" class="header-logo">
+                    <div class="brand-text">
+                        <span class="brand-name">Adriele</span>
+                        <span class="brand-tagline">Terapia Capilar</span>
+                    </div>
+                </a>
+
+                <nav class="header-nav">
+                    <a href="dashboard.html" class="nav-link active">Início</a>
+                    <a href="avaliacao.html" class="nav-link">Ficha de Avaliação</a>
+                    <a href="anamnese.html" class="nav-link">Anamnese Capilar</a>
+                    <a href="calvicie.html" class="nav-link">Tipos de Calvície</a>
+                </nav>
+
+                <div class="header-user">
+                    <span class="user-name" id="userName">Adriele</span>
+                    <button class="btn btn-logout" onclick="logout()">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="dashboard-welcome animate-fadeIn">
+                <h1>Olá, <span id="welcomeName">Adriele</span>! 👋</h1>
+                <p>Bem-vinda ao sistema de avaliação capilar. Escolha uma opção abaixo para começar.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <a href="avaliacao.html" class="dashboard-card animate-fadeIn" style="animation-delay: 0.1s;">
+                    <div class="card-icon">📋</div>
+                    <h3>Ficha de Avaliação</h3>
+                    <p>Cadastre novos clientes com dados completos, histórico pessoal e avaliação do problema.</p>
+                </a>
+
+                <a href="anamnese.html" class="dashboard-card animate-fadeIn" style="animation-delay: 0.2s;">
+                    <div class="card-icon">💇</div>
+                    <h3>Anamnese Capilar</h3>
+                    <p>Análise completa da tricologia, haste capilar, hábitos e exame físico do cliente.</p>
+                </a>
+
+                <a href="calvicie.html" class="dashboard-card animate-fadeIn" style="animation-delay: 0.3s;">
+                    <div class="card-icon">🔬</div>
+                    <h3>Tipos de Calvície</h3>
+                    <p>Consulte a escala Hamilton-Norwood (masculina) e Ludwig (feminina) para identificação.</p>
+                </a>
+
+                <a href="clientes.html" class="dashboard-card animate-fadeIn" style="animation-delay: 0.4s;">
+                    <div class="card-icon">👥</div>
+                    <h3>Clientes Cadastrados</h3>
+                    <p>Visualize e gerencie todos os clientes cadastrados no sistema.</p>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Protect this page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!requireAuth()) return;
+
+            // Update user name
+            const userName = getCurrentUser();
+            document.getElementById('userName').textContent = userName;
+            document.getElementById('welcomeName').textContent = userName;
+        });
+
+        function showClients() {
+            const clients = JSON.parse(localStorage.getItem('adriele_clients') || '[]');
+            if (clients.length === 0) {
+                showToast('Nenhum cliente cadastrado ainda.', 'warning');
+            } else {
+                showToast(`${clients.length} cliente(s) cadastrado(s).`);
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

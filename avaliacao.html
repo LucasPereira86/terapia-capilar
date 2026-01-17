@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adriele Terapia Capilar - Ficha de Avaliação">
+    <title>Adriele Terapia Capilar | Ficha de Avaliação</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="header-brand">
+                    <img src="images/logo.png" alt="Adriele" class="header-logo">
+                    <div class="brand-text">
+                        <span class="brand-name">Adriele</span>
+                        <span class="brand-tagline">Terapia Capilar</span>
+                    </div>
+                </a>
+
+                <nav class="header-nav">
+                    <a href="dashboard.html" class="nav-link">Início</a>
+                    <a href="avaliacao.html" class="nav-link active">Ficha de Avaliação</a>
+                    <a href="anamnese.html" class="nav-link">Anamnese Capilar</a>
+                    <a href="calvicie.html" class="nav-link">Tipos de Calvície</a>
+                </nav>
+
+                <div class="header-user">
+                    <span class="user-name" id="userName">Adriele</span>
+                    <button class="btn btn-logout" onclick="logout()">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main form-page">
+            <div class="form-header">
+                <h1>📋 Ficha de Avaliação</h1>
+                <p>Preencha os dados do cliente para iniciar o acompanhamento capilar.</p>
+            </div>
+
+            <form class="form-container" id="avaliacaoForm">
+
+                <!-- Dados do Cliente -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Dados do Cliente</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" class="form-input"
+                            placeholder="Nome completo do cliente" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="nascimento">Data de Nascimento</label>
+                            <input type="date" id="nascimento" name="nascimento" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="estadoCivil">Estado Civil</label>
+                            <select id="estadoCivil" name="estadoCivil" class="form-select">
+                                <option value="">Selecione...</option>
+                                <option value="solteiro">Solteiro(a)</option>
+                                <option value="casado">Casado(a)</option>
+                                <option value="divorciado">Divorciado(a)</option>
+                                <option value="viuvo">Viúvo(a)</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="endereco">Endereço</label>
+                        <input type="text" id="endereco" name="endereco" class="form-input"
+                            placeholder="Rua, número, complemento">
+                    </div>
+
+                    <div class="form-row form-row-4">
+                        <div class="form-group">
+                            <label class="form-label" for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" class="form-input" placeholder="00000-000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="municipio">Município</label>
+                            <input type="text" id="municipio" name="municipio" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="uf">UF</label>
+                            <select id="uf" name="uf" class="form-select">
+                                <option value="">UF</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label class="form-label" for="celular">Celular *</label>
+                            <input type="tel" id="celular" name="celular" class="form-input"
+                                placeholder="(00) 00000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fixoResidencial">Fixo Residencial</label>
+                            <input type="tel" id="fixoResidencial" name="fixoResidencial" class="form-input"
+                                placeholder="(00) 0000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fixoComercial">Fixo Comercial</label>
+                            <input type="tel" id="fixoComercial" name="fixoComercial" class="form-input"
+                                placeholder="(00) 0000-0000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="email">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-input"
+                                placeholder="email@exemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="profissao">Profissão</label>
+                            <input type="text" id="profissao" name="profissao" class="form-input"
+                                placeholder="Profissão atual">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Terapeuta Capilar -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Terapeuta Capilar</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="terapeuta">Nome do Terapeuta</label>
+                        <input type="text" id="terapeuta" name="terapeuta" class="form-input"
+                            placeholder="Nome do profissional responsável">
+                    </div>
+                </section>
+
+                <!-- Avaliação do Problema do Cliente -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Avaliação do Problema do Cliente</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="queixaPrincipal">Qual a Queixa Principal? *</label>
+                        <textarea id="queixaPrincipal" name="queixaPrincipal" class="form-textarea"
+                            placeholder="Descreva a principal queixa do cliente..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">A doença acomete outras áreas do corpo?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="acometeOutrasSim" name="acometeOutras" value="sim">
+                                    <label for="acometeOutrasSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="acometeOutrasNao" name="acometeOutras" value="nao" checked>
+                                    <label for="acometeOutrasNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="quaisAreas">Quais áreas?</label>
+                            <input type="text" id="quaisAreas" name="quaisAreas" class="form-input"
+                                placeholder="Especifique as áreas afetadas">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="fazQuantoTempo">Faz quanto tempo?</label>
+                            <input type="text" id="fazQuantoTempo" name="fazQuantoTempo" class="form-input"
+                                placeholder="Ex: 6 meses, 2 anos">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">O problema está:</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="problemaEstavel" name="problemaStatus" value="estavel">
+                                    <label for="problemaEstavel">Estável</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="problemaAumentando" name="problemaStatus"
+                                        value="aumentando">
+                                    <label for="problemaAumentando">Aumentando</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="problemaDiminuindo" name="problemaStatus"
+                                        value="diminuindo">
+                                    <label for="problemaDiminuindo">Diminuindo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">O cabelo ficou:</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="cabeloEstavel" name="cabeloStatus" value="estavel">
+                                <label for="cabeloEstavel">Estável</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="cabeloAumentando" name="cabeloStatus" value="aumentando">
+                                <label for="cabeloAumentando">Aumentando</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="cabeloDiminuindo" name="cabeloStatus" value="diminuindo">
+                                <label for="cabeloDiminuindo">Diminuindo</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Apresentou alterações no couro cabeludo como fixo comercial:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoDor" name="alteracoes" value="dor">
+                                <label for="alteracaoDor">Dor</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoCoceira" name="alteracoes" value="coceira">
+                                <label for="alteracaoCoceira">Coceira</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoArdor" name="alteracoes" value="ardor">
+                                <label for="alteracaoArdor">Ardor</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoInflamacao" name="alteracoes" value="inflamacao">
+                                <label for="alteracaoInflamacao">Inflamação</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoCrostas" name="alteracoes" value="crostas">
+                                <label for="alteracaoCrostas">Crostas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoFeridas" name="alteracoes" value="feridas">
+                                <label for="alteracaoFeridas">Feridas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoCaspa" name="alteracoes" value="caspa">
+                                <label for="alteracaoCaspa">Caspa</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoOleosidade" name="alteracoes" value="oleosidade">
+                                <label for="alteracaoOleosidade">Oleosidade</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoOdor" name="alteracoes" value="odor">
+                                <label for="alteracaoOdor">Odor</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alteracaoDescamacao" name="alteracoes" value="descamacao">
+                                <label for="alteracaoDescamacao">Descamação</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Já teve outras crises?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="outrasCrisesSim" name="outrasCrises" value="sim">
+                                    <label for="outrasCrisesSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="outrasCrisesNao" name="outrasCrises" value="nao" checked>
+                                    <label for="outrasCrisesNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="quandoCrises">Quando?</label>
+                            <input type="text" id="quandoCrises" name="quandoCrises" class="form-input"
+                                placeholder="Especifique quando ocorreram">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Histórico Pessoal -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Histórico Pessoal</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="doencasRecentes">Descrever últimas doenças (6 meses), operações
+                            ou internações (2 anos)</label>
+                        <textarea id="doencasRecentes" name="doencasRecentes" class="form-textarea"
+                            placeholder="Descreva o histórico de doenças, operações ou internações..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Você tem alguma doença atual?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="doencaAtualSim" name="doencaAtual" value="sim">
+                                    <label for="doencaAtualSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="doencaAtualNao" name="doencaAtual" value="nao" checked>
+                                    <label for="doencaAtualNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="qualDoenca">Qual?</label>
+                            <input type="text" id="qualDoenca" name="qualDoenca" class="form-input"
+                                placeholder="Especifique a doença">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tem algum problema endócrino?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="endocrinoSim" name="problemaEndocrino" value="sim">
+                                    <label for="endocrinoSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="endocrinoNao" name="problemaEndocrino" value="nao" checked>
+                                    <label for="endocrinoNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="qualEndocrino">Qual?</label>
+                            <input type="text" id="qualEndocrino" name="qualEndocrino" class="form-input"
+                                placeholder="Especifique o problema">
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label class="form-label">É cardíaco?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="cardiacoSim" name="cardiaco" value="sim">
+                                    <label for="cardiacoSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="cardiacoNao" name="cardiaco" value="nao" checked>
+                                    <label for="cardiacoNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Usa marcapasso?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="marcapassoSim" name="marcapasso" value="sim">
+                                    <label for="marcapassoSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="marcapassoNao" name="marcapasso" value="nao" checked>
+                                    <label for="marcapassoNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Toma algum tipo de medicação?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="medicacaoSim" name="medicacao" value="sim">
+                                    <label for="medicacaoSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="medicacaoNao" name="medicacao" value="nao" checked>
+                                    <label for="medicacaoNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="qualMedicacao">Qual?</label>
+                            <input type="text" id="qualMedicacao" name="qualMedicacao" class="form-input"
+                                placeholder="Liste os medicamentos">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nos meses que precederam o problema você:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fezDietas" name="antecedentes" value="dietas">
+                                <label for="fezDietas">Fez dietas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="emagreceu" name="antecedentes" value="emagreceu">
+                                <label for="emagreceu">Emagreceu</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="engordou" name="antecedentes" value="engordou">
+                                <label for="engordou">Engordou</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="criseEmocional" name="antecedentes" value="crise_emocional">
+                                <label for="criseEmocional">Teve alguma crise emocional</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tem alergia a algum medicamento ou cosmético?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="alergiaSim" name="alergia" value="sim">
+                                    <label for="alergiaSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="alergiaNao" name="alergia" value="nao" checked>
+                                    <label for="alergiaNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="qualAlergia">Qual?</label>
+                            <input type="text" id="qualAlergia" name="qualAlergia" class="form-input"
+                                placeholder="Especifique a alergia">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tem filhos?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="filhosSim" name="temFilhos" value="sim">
+                                    <label for="filhosSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="filhosNao" name="temFilhos" value="nao" checked>
+                                    <label for="filhosNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="quantosFilhos">Quantos?</label>
+                            <input type="number" id="quantosFilhos" name="quantosFilhos" class="form-input" min="0"
+                                placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="dataUltimaGravidez">Data da última gravidez</label>
+                            <input type="date" id="dataUltimaGravidez" name="dataUltimaGravidez" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">A gravidez piorou o problema atual?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="gravidezPiorouSim" name="gravidezPiorou" value="sim">
+                                    <label for="gravidezPiorouSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="gravidezPiorouNao" name="gravidezPiorou" value="nao"
+                                        checked>
+                                    <label for="gravidezPiorouNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Come carne?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="comeCarneSim" name="comeCarne" value="sim" checked>
+                                    <label for="comeCarneSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="comeCarneNao" name="comeCarne" value="nao">
+                                    <label for="comeCarneNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tem alguma alteração menstrual?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="alteracaoMenstrualSim" name="alteracaoMenstrual"
+                                        value="sim">
+                                    <label for="alteracaoMenstrualSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="alteracaoMenstrualNao" name="alteracaoMenstrual" value="nao"
+                                        checked>
+                                    <label for="alteracaoMenstrualNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="qualAlteracaoMenstrual">Qual?</label>
+                            <input type="text" id="qualAlteracaoMenstrual" name="qualAlteracaoMenstrual"
+                                class="form-input" placeholder="Especifique a alteração">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Alguém da família tem ou teve o mesmo problema?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="historiaFamiliarSim" name="historiaFamiliar" value="sim">
+                                    <label for="historiaFamiliarSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="historiaFamiliarNao" name="historiaFamiliar" value="nao"
+                                        checked>
+                                    <label for="historiaFamiliarNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Alguém da família tem algum dos tipos de calvície?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="familiaCalvicieSim" name="familiaCalvicie" value="sim">
+                                    <label for="familiaCalvicieSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="familiaCalvicieNao" name="familiaCalvicie" value="nao"
+                                        checked>
+                                    <label for="familiaCalvicieNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Print Header (only visible when printing) -->
+                <div class="print-header">
+                    <img src="images/logo.png" alt="Adriele Terapia Capilar">
+                    <h1>Ficha de Avaliação</h1>
+                    <p>Adriele Terapia Capilar</p>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="limparFormulario()">Limpar</button>
+                    <button type="button" class="btn btn-print" onclick="visualizarImpressao()">🖨️ Visualizar /
+                        Imprimir</button>
+                    <button type="button" class="btn btn-pdf" onclick="salvarPDF()">📄 Salvar PDF</button>
+                    <button type="submit" class="btn btn-primary">Salvar Ficha</button>
+                </div>
+
+                <!-- Print Footer -->
+                <div class="print-footer">
+                    <p>Documento gerado por Adriele Terapia Capilar</p>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/forms.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!requireAuth()) return;
+            document.getElementById('userName').textContent = getCurrentUser();
+        });
+    </script>
+</body>
+
+</html>

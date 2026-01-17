@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adriele Terapia Capilar - Sistema de Avaliação Profissional">
+    <title>Adriele Terapia Capilar | Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-card">
+                <img src="images/logo.png" alt="Adriele Terapia Capilar" class="login-logo">
+
+                <h1 class="login-title">Bem-vinda</h1>
+                <p class="login-subtitle">Acesse o sistema de avaliação capilar</p>
+
+                <form id="loginForm" autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="username">Usuário</label>
+                        <input type="text" id="username" name="username" class="form-input"
+                            placeholder="Digite seu usuário" required autocomplete="username">
+                        <span class="form-error" id="usernameError">Usuário é obrigatório</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="password">Senha</label>
+                        <input type="password" id="password" name="password" class="form-input"
+                            placeholder="Digite sua senha" required autocomplete="current-password">
+                        <span class="form-error" id="passwordError">Senha é obrigatória</span>
+                    </div>
+
+                    <div class="form-error text-center" id="loginError" style="margin-bottom: 1rem;">
+                        Usuário ou senha incorretos
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="loginBtn">
+                        <span id="loginBtnText">Entrar</span>
+                        <span id="loginSpinner" class="spinner hidden"></span>
+                    </button>
+                </form>
+
+                <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-light);">
+                    © 2026 Adriele Terapia Capilar
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

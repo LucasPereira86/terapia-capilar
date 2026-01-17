@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adriele Terapia Capilar - Anamnese Capilar">
+    <title>Adriele Terapia Capilar | Anamnese Capilar</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="header-brand">
+                    <img src="images/logo.png" alt="Adriele" class="header-logo">
+                    <div class="brand-text">
+                        <span class="brand-name">Adriele</span>
+                        <span class="brand-tagline">Terapia Capilar</span>
+                    </div>
+                </a>
+
+                <nav class="header-nav">
+                    <a href="dashboard.html" class="nav-link">Início</a>
+                    <a href="avaliacao.html" class="nav-link">Ficha de Avaliação</a>
+                    <a href="anamnese.html" class="nav-link active">Anamnese Capilar</a>
+                    <a href="calvicie.html" class="nav-link">Tipos de Calvície</a>
+                </nav>
+
+                <div class="header-user">
+                    <span class="user-name" id="userName">Adriele</span>
+                    <button class="btn btn-logout" onclick="logout()">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main form-page">
+            <div class="form-header">
+                <h1>💇 Anamnese Capilar e Termo de Responsabilidade</h1>
+                <p>Análise completa da tricologia, haste capilar e hábitos do cliente.</p>
+            </div>
+
+            <form class="form-container" id="anamneseForm">
+
+                <!-- Dados Básicos -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Dados do Cliente</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="nomeCliente">Nome do Cliente *</label>
+                            <input type="text" id="nomeCliente" name="nomeCliente" class="form-input"
+                                placeholder="Nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="idade">Idade</label>
+                            <input type="number" id="idade" name="idade" class="form-input" placeholder="Idade" min="0"
+                                max="120">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tricologia -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Tricologia</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Tipo Racial do Cabelo</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="tipoMongoloide" name="tipoRacial" value="mongoloide">
+                                <label for="tipoMongoloide">Mongoloide</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="tipoCaucasiano" name="tipoRacial" value="caucasiano">
+                                <label for="tipoCaucasiano">Caucasiano</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="tipoNegroide" name="tipoRacial" value="negroide">
+                                <label for="tipoNegroide">Negroide</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="tipoMisto" name="tipoRacial" value="misto">
+                                <label for="tipoMisto">Misto ou Frisado</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Curvatura</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="curvaturaLiso" name="curvatura" value="liso">
+                                <label for="curvaturaLiso">Liso</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="curvaturaOndulado" name="curvatura" value="ondulado">
+                                <label for="curvaturaOndulado">Ondulado</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="curvaturaCrespo" name="curvatura" value="crespo">
+                                <label for="curvaturaCrespo">Crespo</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Pigmentação Residual</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="pigEumelanina" name="pigmentacao" value="eumelanina">
+                                <label for="pigEumelanina">Eumelanina</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="pigFeumelanina" name="pigmentacao" value="feumelanina">
+                                <label for="pigFeumelanina">Feumelanina</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Característica</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="carNormal" name="caracteristica" value="normal">
+                                <label for="carNormal">Normal</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="carSeco" name="caracteristica" value="seco">
+                                <label for="carSeco">Seco</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="carOleoso" name="caracteristica" value="oleoso">
+                                <label for="carOleoso">Oleoso</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="carMisto" name="caracteristica" value="misto">
+                                <label for="carMisto">Misto</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Haste Capilar -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Haste Capilar</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Porosidade</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="porosidadeNormal" name="porosidade" value="normal">
+                                <label for="porosidadeNormal">Normal</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="porosidadePoroso" name="porosidade" value="poroso">
+                                <label for="porosidadePoroso">Poroso</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="porosidadeSensibilizado" name="porosidade"
+                                    value="sensibilizado">
+                                <label for="porosidadeSensibilizado">Sensibilizado</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="porosidadeImpermeavel" name="porosidade" value="impermeavel">
+                                <label for="porosidadeImpermeavel">Impermeável</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Resistência</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="resistenciaNormal" name="resistencia" value="normal">
+                                <label for="resistenciaNormal">Normal</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="resistenciaMedio" name="resistencia" value="medio">
+                                <label for="resistenciaMedio">Médio</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="resistenciaFragil" name="resistencia" value="fragil">
+                                <label for="resistenciaFragil">Frágil</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Elasticidade</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="elasticidadeBoa" name="elasticidade" value="boa">
+                                <label for="elasticidadeBoa">Boa</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="elasticidadePouca" name="elasticidade" value="pouca">
+                                <label for="elasticidadePouca">Pouca</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="elasticidadeNenhuma" name="elasticidade" value="nenhuma">
+                                <label for="elasticidadeNenhuma">Nenhuma</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Densidade</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="densidadeDenso" name="densidade" value="denso">
+                                <label for="densidadeDenso">Denso</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="densidadeMedio" name="densidade" value="medio">
+                                <label for="densidadeMedio">Médio</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="densidadeEsparso" name="densidade" value="esparso">
+                                <label for="densidadeEsparso">Esparso</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Textura</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="texturaFina" name="textura" value="fina">
+                                <label for="texturaFina">Fina</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="texturaMedia" name="textura" value="media">
+                                <label for="texturaMedia">Média</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="texturaGrossa" name="textura" value="grossa">
+                                <label for="texturaGrossa">Grossa</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Química dos últimos 3 meses a 12 meses -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Química dos Últimos 3 Meses a 12 Meses</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Tratamentos químicos realizados:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="quimPermanente" name="quimica" value="permanente">
+                                <label for="quimPermanente">Permanente</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="quimAlisamento" name="quimica" value="alisamento">
+                                <label for="quimAlisamento">Alisamento</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="quimHene" name="quimica" value="hene_henna">
+                                <label for="quimHene">Henê/Henna</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="quimColoracao" name="quimica" value="coloracao">
+                                <label for="quimColoracao">Coloração</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="quimReflexo" name="quimica" value="reflexo_luzes">
+                                <label for="quimReflexo">Reflexo/Luzes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="quimTonalizante" name="quimica" value="tonalizantes">
+                                <label for="quimTonalizante">Tonalizantes</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="quimOutros">Outros tratamentos:</label>
+                        <input type="text" id="quimOutros" name="quimOutros" class="form-input"
+                            placeholder="Especifique outros tratamentos químicos">
+                    </div>
+                </section>
+
+                <!-- Técnicas de Pentear -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Técnicas de Pentear e/ou Penteados Utilizadas</h2>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecTrancas" name="tecnicas" value="trancas">
+                                <label for="tecTrancas">Tranças</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecRaboTenso" name="tecnicas" value="rabo_tenso">
+                                <label for="tecRaboTenso">Rabo Tenso</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecRaboFrouxo" name="tecnicas" value="rabo_frouxo">
+                                <label for="tecRaboFrouxo">Rabo Frouxo</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecPresilhas" name="tecnicas" value="presilhas">
+                                <label for="tecPresilhas">Presilhas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecGrampos" name="tecnicas" value="grampos">
+                                <label for="tecGrampos">Grampos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecEscovas" name="tecnicas" value="escovas">
+                                <label for="tecEscovas">Escovas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecPentesFinos" name="tecnicas" value="pentes_finos">
+                                <label for="tecPentesFinos">Pentes Finos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tecPentesLargos" name="tecnicas" value="pentes_largos">
+                                <label for="tecPentesLargos">Pentes Largos</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="tecOutros">Outros:</label>
+                        <input type="text" id="tecOutros" name="tecOutros" class="form-input"
+                            placeholder="Especifique outras técnicas">
+                    </div>
+                </section>
+
+                <!-- Hábitos de Higienização e Secagem -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Hábitos de Higienização e Secagem</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Produtos utilizados:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="higShampoo" name="higiene" value="shampoo">
+                                <label for="higShampoo">Shampoo</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="higCondicionador" name="higiene" value="condicionador">
+                                <label for="higCondicionador">Condicionador</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="higPontas" name="higiene" value="pontas">
+                                <label for="higPontas">Pontas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="higTotal" name="higiene" value="total">
+                                <label for="higTotal">Total</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="higSecador" name="higiene" value="secador">
+                                <label for="higSecador">Utiliza Secador</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="higCremeSemEnxague" name="higiene" value="creme_sem_enxague">
+                                <label for="higCremeSemEnxague">Creme sem Enxágue</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="lavagem">Lavagem (vezes por semana)</label>
+                            <input type="number" id="lavagem" name="lavagem" class="form-input" min="0" max="14"
+                                placeholder="Ex: 3">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="higOutros">Outros produtos:</label>
+                            <input type="text" id="higOutros" name="higOutros" class="form-input"
+                                placeholder="Gel, pomada, finalizador...">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Hábitos Alimentares -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Hábitos Alimentares</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Consome regularmente:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alimFrutas" name="alimentacao" value="frutas">
+                                <label for="alimFrutas">Frutas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alimVerduras" name="alimentacao" value="verduras">
+                                <label for="alimVerduras">Verduras</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alimLegumes" name="alimentacao" value="legumes">
+                                <label for="alimLegumes">Legumes</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="liquidos">Líquidos (copos por dia)</label>
+                        <input type="number" id="liquidos" name="liquidos" class="form-input" min="0"
+                            placeholder="Ex: 8">
+                    </div>
+                </section>
+
+                <!-- Cuidados com os Cabelos -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Cuidados com os Cabelos</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Faz química nos cabelos?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="fazQuimicaSim" name="fazQuimica" value="sim">
+                                    <label for="fazQuimicaSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="fazQuimicaNao" name="fazQuimica" value="nao" checked>
+                                    <label for="fazQuimicaNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="qualQuimica">Qual? Frequência?</label>
+                            <input type="text" id="qualQuimica" name="qualQuimica" class="form-input"
+                                placeholder="Especifique">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Usa:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaGel" name="usaAcessorios" value="gel">
+                                <label for="usaGel">Gel</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaBones" name="usaAcessorios" value="bones">
+                                <label for="usaBones">Bonés</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaChapeu" name="usaAcessorios" value="chapeu">
+                                <label for="usaChapeu">Chapéu</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaPenteadosPresos" name="usaAcessorios"
+                                    value="penteados_presos">
+                                <label for="usaPenteadosPresos">Penteados Presos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaEscovas" name="usaAcessorios" value="escovas">
+                                <label for="usaEscovas">Escovas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaCapacetes" name="usaAcessorios" value="capacetes">
+                                <label for="usaCapacetes">Capacetes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="usaCharlis" name="usaAcessorios" value="charlis">
+                                <label for="usaCharlis">Charlis</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="frequenciaLava">De quanto em quanto tempo lava os
+                            cabelos?</label>
+                        <input type="text" id="frequenciaLava" name="frequenciaLava" class="form-input"
+                            placeholder="Ex: Todos os dias, 3x por semana">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="produtosUso">Quais os shampoos, condicionadores e outros produtos
+                            capilares em uso?</label>
+                        <textarea id="produtosUso" name="produtosUso" class="form-textarea"
+                            placeholder="Liste os produtos utilizados..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Exame Físico -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Exame Físico</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">O volume dos cabelos é o mesmo em todo o couro cabeludo?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="volumeIgualSim" name="volumeIgual" value="sim">
+                                    <label for="volumeIgualSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="volumeIgualNao" name="volumeIgual" value="nao">
+                                    <label for="volumeIgualNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">O comprimento dos cabelos é o mesmo em todo o couro
+                                cabeludo?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="comprimentoIgualSim" name="comprimentoIgual" value="sim">
+                                    <label for="comprimentoIgualSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="comprimentoIgualNao" name="comprimentoIgual" value="nao">
+                                    <label for="comprimentoIgualNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tem algum tipo de química?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="tipoQuimicaSim" name="tipoQuimica" value="sim">
+                                    <label for="tipoQuimicaSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="tipoQuimicaNao" name="tipoQuimica" value="nao">
+                                    <label for="tipoQuimicaNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Os cabelos são:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cabelosMacios" name="cabelosSao" value="macios">
+                                <label for="cabelosMacios">Macios</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cabelosAsperos" name="cabelosSao" value="asperos">
+                                <label for="cabelosAsperos">Ásperos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cabelosBrilhantes" name="cabelosSao" value="brilhantes">
+                                <label for="cabelosBrilhantes">Brilhantes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cabelosOpacos" name="cabelosSao" value="opacos_pretos">
+                                <label for="cabelosOpacos">Opacos Pretos</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="qualQuim">Qual química?</label>
+                        <input type="text" id="qualQuim" name="qualQuim" class="form-input"
+                            placeholder="Especifique o tipo de química">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">As pontas dos cabelos são:</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="pontasIntegras" name="pontas" value="integras">
+                                    <label for="pontasIntegras">Íntegras</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="pontasQuebradicas" name="pontas" value="quebradicas">
+                                    <label for="pontasQuebradicas">Quebradiças</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="regioesDanificadas">Em que região estão mais
+                                danificados?</label>
+                            <input type="text" id="regioesDanificadas" name="regioesDanificadas" class="form-input"
+                                placeholder="Especifique a região">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">O couro cabeludo apresenta:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroOleosidade" name="couro" value="oleosidade">
+                                <label for="couroOleosidade">Oleosidade</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroDescamacao" name="couro" value="descamacao">
+                                <label for="couroDescamacao">Descamação</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroVermelhidao" name="couro" value="vermelhidao">
+                                <label for="couroVermelhidao">Vermelhidão</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroManchas" name="couro" value="manchas">
+                                <label for="couroManchas">Manchas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroCaspa" name="couro" value="caspa">
+                                <label for="couroCaspa">Caspa</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroOdor" name="couro" value="odor">
+                                <label for="couroOdor">Odor</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="couroOutro" name="couro" value="outro">
+                                <label for="couroOutro">Outro tipo de alteração</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Presença de:</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="presencaFalhas" name="presenca" value="falhas">
+                                    <label for="presencaFalhas">Falhas</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="presencaEntradas" name="presenca" value="entradas">
+                                    <label for="presencaEntradas">Entradas</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="retracoesRegioes">Retrações em que regiões?</label>
+                            <input type="text" id="retracoesRegioes" name="retracoesRegioes" class="form-input"
+                                placeholder="Especifique as regiões">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Alopecia -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Apenas para Casos de Alopecia Areata e/ou Cicatricial</h2>
+
+                    <div class="form-row form-row-4">
+                        <div class="form-group">
+                            <label class="form-label" for="alopLocalizacao">Localização</label>
+                            <input type="text" id="alopLocalizacao" name="alopLocalizacao" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="alopNumLesoes">Nº de Lesões</label>
+                            <input type="number" id="alopNumLesoes" name="alopNumLesoes" class="form-input" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="alopFormato">Formato</label>
+                            <input type="text" id="alopFormato" name="alopFormato" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="alopTamanho">Tamanho</label>
+                            <input type="text" id="alopTamanho" name="alopTamanho" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="superficieCouro">Superfície do couro cabeludo no local</label>
+                        <input type="text" id="superficieCouro" name="superficieCouro" class="form-input"
+                            placeholder="Descreva a superfície">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Existe reposição dos fios?</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="reposicaoSim" name="reposicao" value="sim">
+                                    <label for="reposicaoSim">Sim</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="reposicaoNao" name="reposicao" value="nao">
+                                    <label for="reposicaoNao">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="observacaoComplementar">Alguma observação
+                                complementar?</label>
+                            <input type="text" id="observacaoComplementar" name="observacaoComplementar"
+                                class="form-input">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Alteração Encontrada -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Alteração Encontrada</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="alteracaoEncontrada">Descreva as alterações encontradas:</label>
+                        <textarea id="alteracaoEncontrada" name="alteracaoEncontrada" class="form-textarea"
+                            placeholder="Descreva detalhadamente as alterações encontradas no exame..."
+                            style="min-height: 150px;"></textarea>
+                    </div>
+                </section>
+
+                <!-- Protocolo Sugerido -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Protocolo Sugerido</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="protocoloSugerido">Descreva o protocolo de tratamento
+                            sugerido:</label>
+                        <textarea id="protocoloSugerido" name="protocoloSugerido" class="form-textarea"
+                            placeholder="Descreva o protocolo de tratamento recomendado..."
+                            style="min-height: 150px;"></textarea>
+                    </div>
+                </section>
+
+                <!-- Termo de Responsabilidade -->
+                <section class="form-section">
+                    <h2 class="form-section-title">Termo de Responsabilidade</h2>
+
+                    <div class="form-group">
+                        <p
+                            style="font-style: italic; color: var(--text-medium); background: var(--accent-light); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
+                            "As declarações aqui contidas representam a expressão da verdade, não cabendo ao
+                            profissional qualquer responsabilidade por dados omitidos ou enganosos."
+                        </p>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aceitoTermo" name="aceitoTermo" value="sim" required>
+                            <label for="aceitoTermo"><strong>Li e aceito o termo de responsabilidade *</strong></label>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label class="form-label" for="dataAssinatura">Data</label>
+                            <input type="date" id="dataAssinatura" name="dataAssinatura" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="assinaturaCliente">Assinatura do Cliente</label>
+                            <input type="text" id="assinaturaCliente" name="assinaturaCliente" class="form-input"
+                                placeholder="Nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="assinaturaProfissional">Profissional</label>
+                            <input type="text" id="assinaturaProfissional" name="assinaturaProfissional"
+                                class="form-input" placeholder="Nome do profissional">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Print Header (only visible when printing) -->
+                <div class="print-header">
+                    <img src="images/logo.png" alt="Adriele Terapia Capilar">
+                    <h1>Anamnese Capilar</h1>
+                    <p>Adriele Terapia Capilar</p>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="limparFormulario()">Limpar</button>
+                    <button type="button" class="btn btn-print" onclick="visualizarImpressao()">🖨️ Visualizar /
+                        Imprimir</button>
+                    <button type="button" class="btn btn-pdf" onclick="salvarPDF()">📄 Salvar PDF</button>
+                    <button type="submit" class="btn btn-primary">Salvar Anamnese</button>
+                </div>
+
+                <!-- Print Footer -->
+                <div class="print-footer">
+                    <p>Documento gerado por Adriele Terapia Capilar</p>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/forms.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!requireAuth()) return;
+            document.getElementById('userName').textContent = getCurrentUser();
+        });
+    </script>
+</body>
+
+</html>

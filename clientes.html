@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adriele Terapia Capilar - Clientes Cadastrados">
+    <title>Adriele Terapia Capilar | Clientes</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        /* Client List Styles */
+        .clients-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .clients-title h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .clients-title p {
+            color: var(--text-medium);
+        }
+
+        .search-box {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            width: 280px;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .clients-stats {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: var(--background-card);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-card .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .clients-table-container {
+            background: var(--background-card);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .clients-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .clients-table th,
+        .clients-table td {
+            padding: var(--spacing-md) var(--spacing-lg);
+            text-align: left;
+            border-bottom: 1px solid var(--accent-light);
+        }
+
+        .clients-table th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .clients-table tr:hover {
+            background: var(--accent-light);
+        }
+
+        .clients-table .client-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .clients-table .client-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-avaliacao {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-anamnese {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .btn-action {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-view {
+            background: var(--accent-light);
+            color: var(--primary);
+        }
+
+        .btn-view:hover {
+            background: var(--accent);
+        }
+
+        .btn-print {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .btn-print:hover {
+            background: #c8e6c9;
+        }
+
+        .btn-delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .btn-delete:hover {
+            background: #ffcdd2;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xxl);
+            color: var(--text-light);
+        }
+
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .empty-state h3 {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--background-card);
+            border-radius: var(--radius-xl);
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.3rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: var(--spacing-xl);
+        }
+
+        .client-detail {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .client-detail h4 {
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+            border-bottom: 2px solid var(--accent-light);
+            padding-bottom: var(--spacing-xs);
+        }
+
+        .client-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .detail-item {
+            background: var(--accent-light);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+        }
+
+        .detail-item label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .detail-item span {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .modal-footer {
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-top: 1px solid var(--accent-light);
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .clients-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .clients-stats {
+                flex-wrap: wrap;
+            }
+
+            .clients-table th:nth-child(3),
+            .clients-table td:nth-child(3) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="header-brand">
+                    <img src="images/logo.png" alt="Adriele" class="header-logo">
+                    <div class="brand-text">
+                        <span class="brand-name">Adriele</span>
+                        <span class="brand-tagline">Terapia Capilar</span>
+                    </div>
+                </a>
+
+                <nav class="header-nav">
+                    <a href="dashboard.html" class="nav-link">Início</a>
+                    <a href="avaliacao.html" class="nav-link">Ficha de Avaliação</a>
+                    <a href="anamnese.html" class="nav-link">Anamnese Capilar</a>
+                    <a href="calvicie.html" class="nav-link">Tipos de Calvície</a>
+                </nav>
+
+                <div class="header-user">
+                    <span class="user-name" id="userName">Adriele</span>
+                    <button class="btn btn-logout" onclick="logout()">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="clients-header">
+                <div class="clients-title">
+                    <h1>👥 Clientes Cadastrados</h1>
+                    <p>Gerencie todas as fichas de avaliação e anamnese</p>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Buscar por nome..." oninput="filterClients()">
+                </div>
+            </div>
+
+            <div class="clients-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalClients">0</div>
+                    <div class="stat-label">Total de Fichas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalAvaliacoes">0</div>
+                    <div class="stat-label">Avaliações</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalAnamneses">0</div>
+                    <div class="stat-label">Anamneses</div>
+                </div>
+            </div>
+
+            <div class="clients-table-container">
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Tipo</th>
+                            <th>Contato</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientsTableBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="icon">📋</div>
+                    <h3>Nenhum cliente cadastrado</h3>
+                    <p>Comece cadastrando uma nova ficha de avaliação ou anamnese</p>
+                    <a href="avaliacao.html" class="btn btn-primary" style="margin-top: var(--spacing-lg);">
+                        Nova Ficha de Avaliação
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- View Modal -->
+    <div class="modal-overlay" id="viewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Dados do Cliente</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Fechar</button>
+                <button class="btn btn-primary" onclick="printCurrentClient()">🖨️ Imprimir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        let allClients = [];
+        let currentViewClient = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!requireAuth()) return;
+
+            const userName = getCurrentUser();
+            document.getElementById('userName').textContent = userName;
+
+            loadClients();
+        });
+
+        function loadClients() {
+            // Get data from localStorage
+            const avaliacoes = JSON.parse(localStorage.getItem('adriele_clients') || '[]');
+            const anamneses = JSON.parse(localStorage.getItem('adriele_anamneses') || '[]');
+
+            // Combine and add type
+            allClients = [
+                ...avaliacoes.map(c => ({ ...c, tipo: 'avaliacao' })),
+                ...anamneses.map(c => ({ ...c, tipo: 'anamnese' }))
+            ];
+
+            // Sort by date (newest first)
+            allClients.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+            // Update stats
+            document.getElementById('totalClients').textContent = allClients.length;
+            document.getElementById('totalAvaliacoes').textContent = avaliacoes.length;
+            document.getElementById('totalAnamneses').textContent = anamneses.length;
+
+            renderClients(allClients);
+        }
+
+        function renderClients(clients) {
+            const tbody = document.getElementById('clientsTableBody');
+            const emptyState = document.getElementById('emptyState');
+
+            if (clients.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+
+            tbody.innerHTML = clients.map((client, index) => {
+                const nome = client.nome || client.nomeCompleto || client.nomeCliente || 'Sem nome';
+                const contato = client.telefone || client.celular || client.contatos || '-';
+                const data = formatDate(client.createdAt);
+                const tipoLabel = client.tipo === 'avaliacao' ? 'Avaliação' : 'Anamnese';
+                const tipoBadge = client.tipo === 'avaliacao' ? 'badge-avaliacao' : 'badge-anamnese';
+
+                return `
+                    <tr>
+                        <td class="client-name">${nome}</td>
+                        <td><span class="badge ${tipoBadge}">${tipoLabel}</span></td>
+                        <td>${contato}</td>
+                        <td class="client-date">${data}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-view" onclick="viewClient(${index})">👁️ Ver</button>
+                                <button class="btn-action btn-print" onclick="printClient(${index})">🖨️</button>
+                                <button class="btn-action btn-delete" onclick="deleteClientById('${client.id}', '${client.tipo}')">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterClients() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = allClients.filter(client => {
+                const nome = (client.nome || client.nomeCompleto || '').toLowerCase();
+                return nome.includes(search);
+            });
+
+            renderClients(filtered);
+        }
+
+        function viewClient(index) {
+            const client = allClients[index];
+            currentViewClient = client;
+
+            const tipoLabel = client.tipo === 'avaliacao' ? 'Ficha de Avaliação' : 'Anamnese Capilar';
+            document.getElementById('modalTitle').textContent = `${tipoLabel} - ${client.nome || client.nomeCompleto || 'Cliente'}`;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = generateClientDetails(client);
+
+            document.getElementById('viewModal').classList.add('active');
+        }
+
+        function generateClientDetails(client) {
+            let html = '';
+
+            // Group fields by category
+            const categories = {
+                'Dados Pessoais': ['nome', 'nomeCompleto', 'dataNascimento', 'idade', 'endereco', 'cep', 'profissao', 'estadoCivil'],
+                'Contato': ['telefone', 'celular', 'contatos', 'email'],
+                'Terapeuta': ['terapeutaCapilar', 'dataAvaliacao'],
+                'Avaliação': ['queixaPrincipal', 'atingeOutrasAreas', 'tempoProblema', 'statusProblema', 'alteracoesCouroSensibilidade', 'alteracoesCouro', 'historicoCrises'],
+                'Histórico Pessoal': ['doencasRecentes', 'operacoesRecentes', 'doencasAtuais', 'problemasEndocrinos', 'problemasCardiacos', 'medicamentos', 'dieta', 'criseEmocional', 'alergias', 'gravidez', 'alteracoesMenstruais', 'historicoFamiliar'],
+                'Tricologia': ['corCabelo', 'textura', 'tipoCabelo', 'porosidade', 'elasticidade', 'densidadeFios'],
+                'Tratamentos': ['tratamentosQuimicos', 'coloracao', 'alisamento', 'permanente'],
+                'Hábitos': ['frequenciaLavagem', 'temperaturaAgua', 'usaSecador', 'usaChapinha'],
+                'Protocolo': ['protocoloIndicado', 'produtosRecomendados', 'frequenciaSessoes', 'observacoes']
+            };
+
+            for (const [category, fields] of Object.entries(categories)) {
+                const relevantFields = fields.filter(f => client[f] && client[f] !== '');
+
+                if (relevantFields.length > 0) {
+                    html += `
+                        <div class="client-detail">
+                            <h4>${category}</h4>
+                            <div class="client-detail-grid">
+                                ${relevantFields.map(field => `
+                                    <div class="detail-item">
+                                        <label>${formatFieldName(field)}</label>
+                                        <span>${formatFieldValue(client[field])}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // Add any other fields not in categories
+            const allCategoryFields = Object.values(categories).flat();
+            const otherFields = Object.keys(client).filter(k =>
+                !allCategoryFields.includes(k) &&
+                !['tipo', 'id', 'dataCadastro'].includes(k) &&
+                client[k] && client[k] !== ''
+            );
+
+            if (otherFields.length > 0) {
+                html += `
+                    <div class="client-detail">
+                        <h4>Outras Informações</h4>
+                        <div class="client-detail-grid">
+                            ${otherFields.map(field => `
+                                <div class="detail-item">
+                                    <label>${formatFieldName(field)}</label>
+                                    <span>${formatFieldValue(client[field])}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return html || '<p>Nenhum dado encontrado.</p>';
+        }
+
+        function formatFieldName(field) {
+            return field
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, str => str.toUpperCase())
+                .trim();
+        }
+
+        function formatFieldValue(value) {
+            if (typeof value === 'boolean') return value ? 'Sim' : 'Não';
+            if (Array.isArray(value)) return value.join(', ');
+            return value;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            try {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('pt-BR');
+            } catch {
+                return dateStr;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('viewModal').classList.remove('active');
+            currentViewClient = null;
+        }
+
+        function printClient(index) {
+            const client = allClients[index];
+            const tipoLabel = client.tipo === 'avaliacao' ? 'Ficha de Avaliação' : 'Anamnese Capilar';
+            const nome = client.nome || client.nomeCompleto || 'Cliente';
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>${tipoLabel} - ${nome}</title>
+                    <style>
+                        body { font-family: 'Lato', Arial, sans-serif; padding: 40px; line-height: 1.6; }
+                        h1 { color: #6b2d3c; border-bottom: 2px solid #d4a574; padding-bottom: 10px; }
+                        h2 { color: #6b2d3c; margin-top: 30px; font-size: 1.1rem; border-bottom: 1px solid #eee; }
+                        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+                        .field { background: #f9f5f2; padding: 10px; border-radius: 5px; }
+                        .field label { font-size: 0.75rem; color: #888; display: block; }
+                        .field span { font-weight: 500; }
+                        .header { text-align: center; margin-bottom: 30px; }
+                        .date { color: #888; font-size: 0.9rem; }
+                        @media print { body { padding: 20px; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Adriele Terapia Capilar</h1>
+                        <p>${tipoLabel}</p>
+                        <p class="date">Data: ${formatDate(client.dataCadastro)}</p>
+                    </div>
+                    ${generateClientDetails(client)}
+                    <script>window.print();<\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        function printCurrentClient() {
+            if (currentViewClient) {
+                const index = allClients.indexOf(currentViewClient);
+                if (index >= 0) printClient(index);
+            }
+        }
+
+        function deleteClient(index) {
+            // Legacy function - redirect to new one
+            const client = allClients[index];
+            if (client) {
+                deleteClientById(client.id, client.tipo);
+            }
+        }
+
+        function deleteClientById(clientId, tipo) {
+            // Find client name for confirmation (use String for type-safe comparison)
+            const client = allClients.find(c => String(c.id) === String(clientId));
+            const nome = client ? (client.nome || client.nomeCompleto || client.nomeCliente || 'este cliente') : 'este cliente';
+
+            if (!confirm(`Tem certeza que deseja excluir a ficha de ${nome}?`)) {
+                return;
+            }
+
+            // Remove from appropriate storage
+            const storageKey = tipo === 'avaliacao' ? 'adriele_clients' : 'adriele_anamneses';
+            let data = JSON.parse(localStorage.getItem(storageKey) || '[]');
+
+            // Find and remove by id
+            const beforeCount = data.length;
+            data = data.filter(c => String(c.id) !== String(clientId));
+            const afterCount = data.length;
+
+            if (beforeCount === afterCount) {
+                showToast('Erro: Cliente não encontrado!', 'error');
+                return;
+            }
+
+            localStorage.setItem(storageKey, JSON.stringify(data));
+
+            showToast('Ficha excluída com sucesso!', 'success');
+            loadClients();
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('viewModal').addEventListener('click', (e) => {
+            if (e.target.id === 'viewModal') {
+                closeModal();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+
+</html>
