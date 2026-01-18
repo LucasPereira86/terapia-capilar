@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Adriele Terapia Capilar - Especialista em tratamentos capilares para calvície masculina e feminina. Avaliação profissional e tratamentos personalizados.">
+    <meta name="keywords" content="terapia capilar, calvície, alopecia, tratamento capilar, queda de cabelo">
+    <title>Adriele Terapia Capilar | Especialista em Calvície</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        /* Landing Page Styles */
+        .landing-page {
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .landing-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            padding: var(--spacing-md) var(--spacing-xl);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-brand-name {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .nav-brand-tagline {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xl);
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white !important;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: white !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--background) 0%, var(--accent-light) 50%, var(--accent) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 120px var(--spacing-xl) var(--spacing-xxl);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(107, 45, 60, 0.08) 100%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 50%;
+            height: 80%;
+            background: linear-gradient(45deg, rgba(107, 45, 60, 0.08) 0%, rgba(212, 165, 116, 0.12) 100%);
+            border-radius: 50%;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: var(--spacing-xl);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            animation: slideUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-xxl);
+            animation: slideUp 0.8s ease-out 0.2s both;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn-hero {
+            padding: var(--spacing-md) var(--spacing-xxl);
+            font-size: 1rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .btn-hero-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-hero-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px var(--spacing-xl);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xxl);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--background-card);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xxl);
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xxl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-image-placeholder img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: var(--radius-lg);
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .about-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .about-feature span {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: var(--background);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .blog-card {
+            background: var(--background-card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .blog-card-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .blog-card-header h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .blog-card-body {
+            padding: var(--spacing-xl);
+        }
+
+        .blog-card-body h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .blog-card-body p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .blog-card-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--spacing-lg);
+        }
+
+        .blog-card-body li {
+            padding: var(--spacing-sm) 0;
+            color: var(--text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+
+        .blog-card-body li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .blog-card-section {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .blog-card-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .services .section-title {
+            color: white;
+        }
+
+        .services .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .service-card h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--background-card);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        /* Footer */
+        .landing-footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: var(--spacing-xxl) var(--spacing-xl);
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: var(--spacing-lg);
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-copy {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .about-features {
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .landing-nav {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.mobile-show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: var(--spacing-lg);
+                box-shadow: var(--shadow-md);
+            }
+
+            .hero {
+                padding: 100px var(--spacing-md) var(--spacing-xl);
+            }
+
+            .hero-logo {
+                width: 140px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 60px var(--spacing-md);
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="landing-page">
+        <!-- Navigation -->
+        <nav class="landing-nav">
+            <div class="nav-container">
+                <a href="home.html" class="nav-brand">
+                    <img src="images/logo.png" alt="Adriele Terapia Capilar">
+                    <div class="nav-brand-text">
+                        <span class="nav-brand-name">Adriele</span>
+                        <span class="nav-brand-tagline">Terapia Capilar</span>
+                    </div>
+                </a>
+                <div class="nav-links">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="login.html" class="btn-login">Acessar Sistema</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <img src="images/logo.png" alt="Adriele Terapia Capilar" class="hero-logo">
+                <h1>Especialista em Terapia Capilar</h1>
+                <p class="hero-subtitle">
+                    Avaliação profissional e tratamentos personalizados para calvície masculina e feminina.
+                    Recupere a saúde dos seus cabelos com acompanhamento especializado.
+                </p>
+                <div class="hero-cta">
+                    <a href="login.html" class="btn-hero btn-hero-primary">Acessar Sistema</a>
+                    <a href="#blog" class="btn-hero btn-hero-secondary">Saiba Mais</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="sobre">
+            <div class="section-container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="about-image-placeholder">
+                            <img src="images/adriele.jpg" alt="Adriele Vilarinho - Terapeuta Capilar"
+                                style="width: 100%; max-width: 400px; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h2>Adriele Terapia Capilar</h2>
+                        <p>
+                            Com anos de experiência em terapia capilar, oferecemos um atendimento humanizado
+                            e personalizado para cada cliente. Nossa abordagem combina técnicas modernas com
+                            uma avaliação completa do couro cabeludo e histórico de saúde.
+                        </p>
+                        <p>
+                            Entendemos que a queda de cabelo pode afetar a autoestima e confiança.
+                            Por isso, trabalhamos com dedicação para identificar as causas e propor
+                            os melhores tratamentos para cada caso.
+                        </p>
+                        <div class="about-features">
+                            <div class="about-feature">
+                                <div class="about-feature-icon">✨</div>
+                                <span>Avaliação Capilar Completa</span>
+                            </div>
+                            <div class="about-feature">
+                                <div class="about-feature-icon">📋</div>
+                                <span>Anamnese Detalhada</span>
+                            </div>
+                            <div class="about-feature">
+                                <div class="about-feature-icon">💊</div>
+                                <span>Tratamentos Personalizados</span>
+                            </div>
+                            <div class="about-feature">
+                                <div class="about-feature-icon">❤️</div>
+                                <span>Acompanhamento Contínuo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section blog" id="blog">
+            <div class="section-container">
+                <h2 class="section-title">Entendendo a Calvície</h2>
+                <p class="section-subtitle">
+                    Conheça mais sobre os tipos de calvície, suas causas e tratamentos disponíveis
+                </p>
+
+                <div class="blog-grid">
+                    <!-- Calvície Masculina -->
+                    <article class="blog-card fade-in">
+                        <div class="blog-card-header">
+                            <div class="blog-card-icon">👨</div>
+                            <h3>Calvície Masculina</h3>
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-section">
+                                <h4>🔬 O que é?</h4>
+                                <p>
+                                    A <strong>Alopecia Androgenética Masculina</strong> é a forma mais comum de queda de
+                                    cabelo
+                                    nos homens, afetando cerca de 50% dos homens acima de 50 anos. É causada por uma
+                                    combinação de fatores genéticos e hormonais.
+                                </p>
+                            </div>
+
+                            <div class="blog-card-section">
+                                <h4>⚠️ Principais Causas</h4>
+                                <ul>
+                                    <li>Predisposição genética (hereditária)</li>
+                                    <li>Ação do hormônio DHT nos folículos</li>
+                                    <li>Sensibilidade dos folículos ao DHT</li>
+                                    <li>Idade avançada</li>
+                                    <li>Estresse e fatores ambientais</li>
+                                </ul>
+                            </div>
+
+                            <div class="blog-card-section">
+                                <h4>📊 Escala de Hamilton-Norwood</h4>
+                                <p>
+                                    A progressão da calvície masculina é classificada pela <strong>Escala de
+                                        Hamilton-Norwood</strong>,
+                                    que vai do estágio 1 (sem queda significativa) até o estágio 7 (calvície severa).
+                                    A perda geralmente começa nas entradas e no topo da cabeça.
+                                </p>
+                            </div>
+
+                            <div class="blog-card-section">
+                                <h4>💊 Tratamentos Disponíveis</h4>
+                                <ul>
+                                    <li>Minoxidil tópico</li>
+                                    <li>Finasterida oral</li>
+                                    <li>Terapias com laser</li>
+                                    <li>Microagulhamento</li>
+                                    <li>Transplante capilar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Calvície Feminina -->
+                    <article class="blog-card fade-in">
+                        <div class="blog-card-header"
+                            style="background: linear-gradient(135deg, #8B4D5C 0%, #6B2D3C 100%);">
+                            <div class="blog-card-icon">👩</div>
+                            <h3>Calvície Feminina</h3>
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-section">
+                                <h4>🔬 O que é?</h4>
+                                <p>
+                                    A <strong>Alopecia Androgenética Feminina</strong> afeta até 40% das mulheres ao
+                                    longo da vida.
+                                    Diferente da masculina, geralmente causa um afinamento difuso dos fios,
+                                    mantendo a linha frontal do cabelo.
+                                </p>
+                            </div>
+
+                            <div class="blog-card-section">
+                                <h4>⚠️ Principais Causas</h4>
+                                <ul>
+                                    <li>Alterações hormonais (menopausa, gravidez)</li>
+                                    <li>Síndrome dos Ovários Policísticos (SOP)</li>
+                                    <li>Deficiências nutricionais (ferro, vitaminas)</li>
+                                    <li>Estresse físico e emocional</li>
+                                    <li>Uso de contraceptivos hormonais</li>
+                                    <li>Problemas na tireoide</li>
+                                </ul>
+                            </div>
+
+                            <div class="blog-card-section">
+                                <h4>📊 Escala de Ludwig</h4>
+                                <p>
+                                    A calvície feminina é classificada pela <strong>Escala de Ludwig</strong>,
+                                    com 3 graus de severidade. A perda ocorre principalmente no topo da cabeça,
+                                    causando afinamento e redução do volume capilar.
+                                </p>
+                            </div>
+
+                            <div class="blog-card-section">
+                                <h4>💊 Tratamentos Disponíveis</h4>
+                                <ul>
+                                    <li>Minoxidil tópico</li>
+                                    <li>Suplementação nutricional</li>
+                                    <li>Terapias hormonais (quando indicado)</li>
+                                    <li>Microagulhamento</li>
+                                    <li>Mesoterapia capilar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section services" id="servicos">
+            <div class="section-container">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <p class="section-subtitle">
+                    Oferecemos um atendimento completo para cuidar da saúde do seu cabelo
+                </p>
+
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📋</div>
+                        <h3>Ficha de Avaliação</h3>
+                        <p>
+                            Avaliação completa do couro cabeludo, análise da densidade,
+                            textura e condição dos fios para um diagnóstico preciso.
+                        </p>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📝</div>
+                        <h3>Anamnese Capilar</h3>
+                        <p>
+                            Investigação detalhada do histórico de saúde, hábitos de vida,
+                            medicamentos e tratamentos anteriores.
+                        </p>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🔬</div>
+                        <h3>Análise de Calvície</h3>
+                        <p>
+                            Identificação do tipo e estágio da calvície utilizando
+                            as escalas de Hamilton-Norwood e Ludwig.
+                        </p>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <div class="service-icon">💊</div>
+                        <h3>Plano de Tratamento</h3>
+                        <p>
+                            Protocolo personalizado de tratamento baseado na avaliação
+                            individual de cada cliente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta">
+            <div class="section-container">
+                <div class="cta-content fade-in">
+                    <h2>Pronto para Começar?</h2>
+                    <p>
+                        Acesse nosso sistema de avaliação e dê o primeiro passo para
+                        recuperar a saúde dos seus cabelos.
+                    </p>
+                    <a href="login.html" class="btn-hero btn-hero-primary">
+                        Acessar Sistema
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <img src="images/logo.png" alt="Adriele Terapia Capilar" class="footer-logo">
+            <p class="footer-text">
+                Adriele Terapia Capilar - Especialista em tratamentos para calvície
+            </p>
+            <p class="footer-copy">
+                © 2026 Adriele Terapia Capilar. Todos os direitos reservados.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
